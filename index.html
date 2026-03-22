@@ -15,448 +15,142 @@
     --white: #f0f4ff;
     --gray: #8899aa;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: var(--navy);
-    color: var(--white);
-    font-family: 'Noto Sans KR', sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  /* Background pattern */
+  body { background: var(--navy); color: var(--white); font-family: 'Noto Sans KR', sans-serif; min-height: 100vh; overflow-x: hidden; }
   body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(240,180,41,0.03) 60px, rgba(240,180,41,0.03) 61px),
-      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(240,180,41,0.03) 60px, rgba(240,180,41,0.03) 61px);
-    pointer-events: none;
-    z-index: 0;
+    content: ''; position: fixed; inset: 0;
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(240,180,41,0.03) 60px, rgba(240,180,41,0.03) 61px), repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(240,180,41,0.03) 60px, rgba(240,180,41,0.03) 61px);
+    pointer-events: none; z-index: 0;
   }
-
-  /* Header */
-  header {
-    position: relative;
-    z-index: 10;
-    padding: 0 40px;
-    height: 72px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid rgba(240,180,41,0.15);
-    background: rgba(10,14,26,0.95);
-    backdrop-filter: blur(12px);
-    position: sticky;
-    top: 0;
-  }
-
-  .logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    letter-spacing: 4px;
-    color: var(--white);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .logo span {
-    color: var(--gold);
-  }
-
-  .logo-dot {
-    width: 8px;
-    height: 8px;
-    background: var(--gold);
-    border-radius: 50%;
-    animation: pulse 2s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.8); }
-  }
-
-  nav {
-    display: flex;
-    gap: 32px;
-    align-items: center;
-  }
-
-  nav a {
-    color: var(--gray);
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-
+  header { z-index: 100; padding: 0 40px; height: 72px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(240,180,41,0.15); background: rgba(10,14,26,0.95); backdrop-filter: blur(12px); position: sticky; top: 0; }
+  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 4px; color: var(--white); display: flex; align-items: center; gap: 10px; }
+  .logo span { color: var(--gold); }
+  .logo-dot { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.5;transform:scale(0.8);} }
+  nav { display: flex; gap: 32px; align-items: center; }
+  nav a { color: var(--gray); text-decoration: none; font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; transition: color 0.2s; }
   nav a:hover { color: var(--gold); }
 
   /* Hero */
-  .hero {
-    position: relative;
-    z-index: 1;
-    padding: 80px 40px 60px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
+  .hero-section { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 60px 40px; display: grid; grid-template-columns: 1fr 460px; gap: 60px; align-items: center; }
+  .hero-tag { display: inline-flex; align-items: center; gap: 8px; background: rgba(240,180,41,0.1); border: 1px solid rgba(240,180,41,0.3); color: var(--gold); font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; padding: 6px 14px; border-radius: 2px; margin-bottom: 24px; }
+  .hero-left h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 6vw, 88px); line-height: 0.95; letter-spacing: 2px; margin-bottom: 20px; }
+  .hero-left h1 em { color: var(--gold); font-style: normal; display: block; }
+  .hero-left p { color: var(--gray); font-size: 14px; font-weight: 300; line-height: 1.8; max-width: 400px; }
 
-  .hero-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(240,180,41,0.1);
-    border: 1px solid rgba(240,180,41,0.3);
-    color: var(--gold);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    padding: 6px 14px;
-    border-radius: 2px;
-    margin-bottom: 24px;
-  }
+  /* Slider */
+  .hero-slider { position: relative; border-radius: 8px; overflow: hidden; background: var(--navy2); border: 1px solid rgba(240,180,41,0.2); aspect-ratio: 1/1; height: auto; }
+  .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.6s ease; display: flex; flex-direction: column; }
+  .slide.active { opacity: 1; }
+  .slide-image { width: 100%; height: 65%; background: var(--navy3); display: flex; align-items: center; justify-content: center; font-size: 72px; flex-shrink: 0; overflow: hidden; position: relative; }
+  .slide-image img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+  .slide-image .slide-emoji-fallback { position: relative; z-index: 1; }
+  .slide-body { padding: 20px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+  .slide-player { display: inline-block; background: var(--gold); color: var(--navy); font-size: 10px; font-weight: 700; letter-spacing: 2px; padding: 3px 10px; border-radius: 2px; margin-bottom: 10px; }
+  .slide-title { font-size: 14px; font-weight: 700; line-height: 1.5; color: var(--white); }
+  .slide-meta { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; }
+  .slide-source, .slide-date { font-size: 11px; color: var(--gray); }
+  .slider-arrows { position: absolute; top: 30%; width: 100%; display: flex; justify-content: space-between; padding: 0 10px; pointer-events: none; transform: translateY(-50%); }
+  .slider-arrow { background: rgba(10,14,26,0.8); border: 1px solid rgba(240,180,41,0.3); color: var(--gold); width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; pointer-events: all; font-size: 16px; transition: background 0.2s; }
+  .slider-arrow:hover { background: rgba(240,180,41,0.2); }
+  .slider-dots { position: absolute; bottom: 14px; right: 14px; display: flex; gap: 6px; }
+  .slider-dot { width: 6px; height: 6px; background: rgba(240,180,41,0.3); border-radius: 50%; cursor: pointer; transition: all 0.2s; }
+  .slider-dot.active { background: var(--gold); transform: scale(1.3); }
 
-  .hero h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(48px, 8vw, 96px);
-    line-height: 0.95;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
-  }
+  /* Filter */
+  .filter-bar { position: relative; z-index: 1; padding: 0 40px 40px; max-width: 1200px; margin: 0 auto; display: flex; gap: 10px; flex-wrap: wrap; }
+  .filter-btn { background: transparent; border: 1px solid rgba(240,180,41,0.2); color: var(--gray); font-family: 'Noto Sans KR', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1px; padding: 8px 18px; border-radius: 2px; cursor: pointer; transition: all 0.2s; text-transform: uppercase; }
+  .filter-btn:hover, .filter-btn.active { background: var(--gold); border-color: var(--gold); color: var(--navy); }
 
-  .hero h1 em {
-    color: var(--gold);
-    font-style: normal;
-    display: block;
-  }
+  /* Gallery */
+  .gallery { position: relative; z-index: 1; padding: 0 40px 80px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+  .card { background: var(--navy2); border: 1px solid rgba(240,180,41,0.1); border-radius: 4px; overflow: hidden; cursor: pointer; transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s; animation: fadeUp 0.6s ease both; }
+  .card:hover { transform: translateY(-6px); border-color: rgba(240,180,41,0.5); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(24px);} to{opacity:1;transform:translateY(0);} }
+  .card:nth-child(1){animation-delay:0s} .card:nth-child(2){animation-delay:.1s} .card:nth-child(3){animation-delay:.2s} .card:nth-child(4){animation-delay:.3s}
+  .card-image { width: 100%; aspect-ratio: 1/1; background: var(--navy3); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+  .card:hover .card-image img { transform: scale(1.05); }
+  .card-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; background: linear-gradient(135deg, var(--navy3) 0%, #0d1525 100%); }
+  .placeholder-icon { width: 48px; height: 48px; border: 2px solid rgba(240,180,41,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(240,180,41,0.4); font-size: 20px; }
+  .placeholder-text { color: rgba(240,180,41,0.3); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+  .card-tag { position: absolute; top: 12px; left: 12px; background: var(--gold); color: var(--navy); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 4px 10px; border-radius: 2px; }
+  .card-body { padding: 20px; }
+  .card-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .card-sport { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
+  .card-date { font-size: 11px; color: var(--gray); }
+  .card-title { font-size: 15px; font-weight: 700; line-height: 1.5; margin-bottom: 12px; color: var(--white); }
+  .card-source { font-size: 11px; color: var(--gray); display: flex; align-items: center; gap: 6px; }
+  .card-source::before { content: ''; display: inline-block; width: 4px; height: 4px; background: var(--gold); border-radius: 50%; }
 
-  .hero p {
-    color: var(--gray);
-    font-size: 15px;
-    font-weight: 300;
-    line-height: 1.8;
-    max-width: 480px;
-  }
-
-  /* Filter bar */
-  .filter-bar {
-    position: relative;
-    z-index: 1;
-    padding: 0 40px 40px;
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-
-  .filter-btn {
-    background: transparent;
-    border: 1px solid rgba(240,180,41,0.2);
-    color: var(--gray);
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    padding: 8px 18px;
-    border-radius: 2px;
-    cursor: pointer;
-    transition: all 0.2s;
-    text-transform: uppercase;
-  }
-
-  .filter-btn:hover,
-  .filter-btn.active {
-    background: var(--gold);
-    border-color: var(--gold);
-    color: var(--navy);
-  }
-
-  /* Gallery grid */
-  .gallery {
-    position: relative;
-    z-index: 1;
-    padding: 0 40px 80px;
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: 24px;
-  }
-
-  .card {
-    background: var(--navy2);
-    border: 1px solid rgba(240,180,41,0.1);
-    border-radius: 4px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-    animation: fadeUp 0.6s ease both;
-  }
-
-  .card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(240,180,41,0.5);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(240,180,41,0.1);
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .card:nth-child(1) { animation-delay: 0.0s; }
-  .card:nth-child(2) { animation-delay: 0.1s; }
-  .card:nth-child(3) { animation-delay: 0.2s; }
-  .card:nth-child(4) { animation-delay: 0.3s; }
-  .card:nth-child(5) { animation-delay: 0.4s; }
-  .card:nth-child(6) { animation-delay: 0.5s; }
-
-  .card-image {
-    width: 100%;
-    aspect-ratio: 16/9;
-    background: var(--navy3);
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s;
-  }
-
-  .card:hover .card-image img {
-    transform: scale(1.05);
-  }
-
-  /* Placeholder for empty cards */
-  .card-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    background: linear-gradient(135deg, var(--navy3) 0%, #0d1525 100%);
-  }
-
-  .placeholder-icon {
-    width: 48px;
-    height: 48px;
-    border: 2px solid rgba(240,180,41,0.3);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(240,180,41,0.4);
-    font-size: 20px;
-  }
-
-  .placeholder-text {
-    color: rgba(240,180,41,0.3);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-  }
-
-  .card-tag {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    background: var(--gold);
-    color: var(--navy);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 4px 10px;
-    border-radius: 2px;
-  }
-
-  .card-body {
-    padding: 20px;
-  }
-
-  .card-meta {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 10px;
-  }
-
-  .card-sport {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gold);
-  }
-
-  .card-date {
-    font-size: 11px;
-    color: var(--gray);
-  }
-
-  .card-title {
-    font-size: 15px;
-    font-weight: 700;
-    line-height: 1.5;
-    margin-bottom: 12px;
-    color: var(--white);
-  }
-
-  .card-source {
-    font-size: 11px;
-    color: var(--gray);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .card-source::before {
-    content: '';
-    display: inline-block;
-    width: 4px;
-    height: 4px;
-    background: var(--gold);
-    border-radius: 50%;
-  }
-
-  /* Ad banner */
-  .ad-banner {
-    position: relative;
-    z-index: 1;
-    max-width: 1200px;
-    margin: 0 auto 40px;
-    padding: 0 40px;
-  }
-
-  .ad-inner {
-    background: var(--navy3);
-    border: 1px solid rgba(240,180,41,0.15);
-    border-radius: 4px;
-    padding: 20px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-  }
-
-  .ad-label {
-    font-size: 10px;
-    color: var(--gray);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
-
-  .ad-text {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--white);
-  }
-
-  .ad-btn {
-    background: var(--gold);
-    color: var(--navy);
-    border: none;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    padding: 10px 24px;
-    border-radius: 2px;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: background 0.2s;
-    text-decoration: none;
-    display: inline-block;
-  }
-
+  /* Ad */
+  .ad-banner { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto 40px; padding: 0 40px; }
+  .ad-inner { background: var(--navy3); border: 1px solid rgba(240,180,41,0.15); border-radius: 4px; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+  .ad-label { font-size: 10px; color: var(--gray); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+  .ad-text { font-size: 14px; font-weight: 700; color: var(--white); }
+  .ad-btn { background: var(--gold); color: var(--navy); border: none; font-family: 'Noto Sans KR', sans-serif; font-size: 12px; font-weight: 700; padding: 10px 24px; border-radius: 2px; cursor: pointer; white-space: nowrap; text-decoration: none; display: inline-block; transition: background 0.2s; }
   .ad-btn:hover { background: var(--gold2); }
 
-  /* Empty state */
-  .empty-state {
-    grid-column: 1 / -1;
-    text-align: center;
-    padding: 80px 20px;
-    color: var(--gray);
-  }
-
-  .empty-state h3 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 32px;
-    letter-spacing: 3px;
-    color: rgba(240,180,41,0.3);
-    margin-bottom: 12px;
-  }
-
-  .empty-state p {
-    font-size: 14px;
-    line-height: 1.8;
-  }
-
-  /* Footer */
-  footer {
-    position: relative;
-    z-index: 1;
-    border-top: 1px solid rgba(240,180,41,0.1);
-    padding: 32px 40px;
-    text-align: center;
-    color: var(--gray);
-    font-size: 12px;
-    letter-spacing: 1px;
-  }
-
+  footer { position: relative; z-index: 1; border-top: 1px solid rgba(240,180,41,0.1); padding: 32px 40px; text-align: center; color: var(--gray); font-size: 12px; letter-spacing: 1px; }
   footer span { color: var(--gold); }
+
+  /* Modal */
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 999; display: flex; align-items: center; justify-content: center; padding: 20px; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal { background: var(--navy2); border: 1px solid rgba(240,180,41,0.2); border-radius: 12px; width: 100%; max-width: 480px; overflow: hidden; transform: scale(0.92) translateY(20px); transition: transform 0.3s; }
+  .modal-overlay.open .modal { transform: scale(1) translateY(0); }
+  .modal-image { width: 100%; aspect-ratio: 1/1; background: var(--navy3); display: flex; align-items: center; justify-content: center; font-size: 80px; overflow: hidden; position: relative; }
+  .modal-image img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+  .modal-body { padding: 24px; }
+  .modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  .modal-player { background: var(--gold); color: var(--navy); font-size: 11px; font-weight: 700; letter-spacing: 2px; padding: 4px 12px; border-radius: 2px; }
+  .modal-close { background: transparent; border: 1px solid rgba(255,255,255,0.1); color: var(--gray); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px; transition: all 0.2s; }
+  .modal-close:hover { border-color: rgba(240,180,41,0.5); color: var(--gold); }
+  .modal-sport { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .modal-title { font-size: 17px; font-weight: 700; line-height: 1.6; color: var(--white); margin-bottom: 16px; }
+  .modal-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; border-top: 1px solid rgba(240,180,41,0.1); }
+  .modal-source { font-size: 12px; color: var(--gray); display: flex; align-items: center; gap: 6px; }
+  .modal-source::before { content: ''; display: inline-block; width: 4px; height: 4px; background: var(--gold); border-radius: 50%; }
+  .modal-date { font-size: 12px; color: var(--gray); }
+  .modal-nav { display: flex; gap: 8px; margin-top: 16px; }
+  .modal-nav-btn { flex: 1; background: transparent; border: 1px solid rgba(240,180,41,0.2); color: var(--gold); font-family: 'Noto Sans KR', sans-serif; font-size: 12px; font-weight: 700; padding: 8px; border-radius: 4px; cursor: pointer; transition: all 0.2s; }
+  .modal-nav-btn:hover { background: rgba(240,180,41,0.1); }
+
+  @media (max-width: 768px) { .hero-section { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="logo">
-    <div class="logo-dot"></div>
-    SPORT <span>LENS</span>
-  </div>
+  <div class="logo"><div class="logo-dot"></div>SPORT <span>LENS</span></div>
   <nav>
-    <a href="#">전체</a>
-    <a href="#">축구</a>
-    <a href="#">야구</a>
-    <a href="#">농구</a>
-    <a href="#">LOL</a>
+    <a href="#">전체</a><a href="#">축구</a><a href="#">야구</a><a href="#">농구</a><a href="#">LOL</a>
   </nav>
 </header>
 
-<section class="hero">
-  <div class="hero-tag">🔴 LIVE · 해외 한국 선수 뉴스</div>
-  <h1>KOREAN<em>PLAYERS</em>ABROAD</h1>
-  <p>손흥민, 이강인, 김하성 등 해외에서 활약하는 한국 선수들의 최신 뉴스를 인포그래픽으로 만나보세요.</p>
+<section class="hero-section">
+  <div class="hero-left">
+    <div class="hero-tag">🔴 LIVE · 해외 한국 선수 뉴스</div>
+    <h1>KOREAN<em>PLAYERS</em>ABROAD</h1>
+    <p>손흥민, 이강인, 김하성 등 해외에서 활약하는 한국 선수들의 최신 뉴스를 인포그래픽으로 만나보세요.</p>
+  </div>
+  <div class="hero-slider" id="heroSlider">
+    <div class="slider-arrows">
+      <button class="slider-arrow" onclick="changeSlide(-1)">‹</button>
+      <button class="slider-arrow" onclick="changeSlide(1)">›</button>
+    </div>
+    <div class="slider-dots" id="sliderDots"></div>
+  </div>
 </section>
 
 <div class="filter-bar">
-  <button class="filter-btn active" onclick="filterCards('all', this)">전체</button>
-  <button class="filter-btn" onclick="filterCards('soccer', this)">⚽ 축구</button>
-  <button class="filter-btn" onclick="filterCards('baseball', this)">⚾ 야구</button>
-  <button class="filter-btn" onclick="filterCards('basketball', this)">🏀 농구</button>
-  <button class="filter-btn" onclick="filterCards('lol', this)">🎮 LOL</button>
+  <button class="filter-btn active" onclick="filterCards('all',this)">전체</button>
+  <button class="filter-btn" onclick="filterCards('soccer',this)">⚽ 축구</button>
+  <button class="filter-btn" onclick="filterCards('baseball',this)">⚾ 야구</button>
+  <button class="filter-btn" onclick="filterCards('basketball',this)">🏀 농구</button>
+  <button class="filter-btn" onclick="filterCards('lol',this)">🎮 LOL</button>
 </div>
 
-<!-- 쿠팡 광고 영역 -->
 <div class="ad-banner">
   <div class="ad-inner">
     <div>
@@ -468,139 +162,163 @@
 </div>
 
 <div class="gallery" id="gallery">
-
-  <!-- 샘플 카드 1 -->
-  <div class="card" data-category="soccer">
-    <div class="card-image">
-      <div class="card-placeholder">
-        <div class="placeholder-icon">⚽</div>
-        <div class="placeholder-text">인포그래픽</div>
-      </div>
-      <div class="card-tag">손흥민</div>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="card-sport">축구 · MLS</span>
-        <span class="card-date">2026.03.22</span>
-      </div>
-      <div class="card-title">LAFC 손흥민, 시즌 5호골 폭발 — 인터 마이애미전 결승골</div>
-      <div class="card-source">BBC Sport</div>
-    </div>
+  <div class="card" data-category="soccer" onclick="openCardModal(this)">
+    <div class="card-image"><div class="card-placeholder"><div class="placeholder-icon">⚽</div><div class="placeholder-text">인포그래픽</div></div><div class="card-tag">손흥민</div></div>
+    <div class="card-body"><div class="card-meta"><span class="card-sport">축구 · MLS</span><span class="card-date">2026.03.22</span></div><div class="card-title">LAFC 손흥민, 시즌 5호골 폭발 — 인터 마이애미전 결승골</div><div class="card-source">BBC Sport</div></div>
   </div>
-
-  <!-- 샘플 카드 2 -->
-  <div class="card" data-category="soccer">
-    <div class="card-image">
-      <div class="card-placeholder">
-        <div class="placeholder-icon">⚽</div>
-        <div class="placeholder-text">인포그래픽</div>
-      </div>
-      <div class="card-tag">이강인</div>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="card-sport">축구 · Ligue 1</span>
-        <span class="card-date">2026.03.21</span>
-      </div>
-      <div class="card-title">이강인, PSG 챔피언스리그 선발 — 팬들 반응 폭발적</div>
-      <div class="card-source">ESPN</div>
-    </div>
+  <div class="card" data-category="soccer" onclick="openCardModal(this)">
+    <div class="card-image"><div class="card-placeholder"><div class="placeholder-icon">⚽</div><div class="placeholder-text">인포그래픽</div></div><div class="card-tag">이강인</div></div>
+    <div class="card-body"><div class="card-meta"><span class="card-sport">축구 · Ligue 1</span><span class="card-date">2026.03.21</span></div><div class="card-title">이강인, PSG 챔피언스리그 선발 — 팬들 반응 폭발적</div><div class="card-source">ESPN</div></div>
   </div>
-
-  <!-- 샘플 카드 3 -->
-  <div class="card" data-category="baseball">
-    <div class="card-image">
-      <div class="card-placeholder">
-        <div class="placeholder-icon">⚾</div>
-        <div class="placeholder-text">인포그래픽</div>
-      </div>
-      <div class="card-tag">김하성</div>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="card-sport">야구 · MLB</span>
-        <span class="card-date">2026.03.20</span>
-      </div>
-      <div class="card-title">김하성, 샌디에이고 시범경기 3안타 — 개막 기대감 UP</div>
-      <div class="card-source">MLB.com</div>
-    </div>
+  <div class="card" data-category="baseball" onclick="openCardModal(this)">
+    <div class="card-image"><div class="card-placeholder"><div class="placeholder-icon">⚾</div><div class="placeholder-text">인포그래픽</div></div><div class="card-tag">김하성</div></div>
+    <div class="card-body"><div class="card-meta"><span class="card-sport">야구 · MLB</span><span class="card-date">2026.03.20</span></div><div class="card-title">김하성, 샌디에이고 시범경기 3안타 — 개막 기대감 UP</div><div class="card-source">MLB.com</div></div>
   </div>
-
-  <!-- 빈 카드 (앞으로 채울 것) -->
-  <div class="card" data-category="soccer">
-    <div class="card-image">
-      <div class="card-placeholder">
-        <div class="placeholder-icon">+</div>
-        <div class="placeholder-text">곧 업로드</div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="card-sport">축구</span>
-        <span class="card-date">—</span>
-      </div>
-      <div class="card-title" style="color: var(--gray);">새 인포그래픽이 곧 업로드됩니다</div>
-      <div class="card-source">자동 업데이트</div>
-    </div>
+  <div class="card" data-category="lol" onclick="openCardModal(this)">
+    <div class="card-image"><div class="card-placeholder"><div class="placeholder-icon">🎮</div><div class="placeholder-text">인포그래픽</div></div><div class="card-tag">Faker</div></div>
+    <div class="card-body"><div class="card-meta"><span class="card-sport">LOL · LCK</span><span class="card-date">2026.03.22</span></div><div class="card-title">페이커, 2026 MSI 한국 대표 확정 — 역대 최다 우승 도전</div><div class="card-source">Inven Global</div></div>
   </div>
-
-  <!-- LOL 카드 -->
-  <div class="card" data-category="lol">
-    <div class="card-image">
-      <div class="card-placeholder">
-        <div class="placeholder-icon">🎮</div>
-        <div class="placeholder-text">인포그래픽</div>
-      </div>
-      <div class="card-tag">Faker</div>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="card-sport">LOL · LCK</span>
-        <span class="card-date">2026.03.22</span>
-      </div>
-      <div class="card-title">페이커, 2026 MSI 한국 대표 확정 — 역대 최다 우승 도전</div>
-      <div class="card-source">Inven Global</div>
-    </div>
-  </div>
-
-  <!-- LOL 빈 카드 -->
-  <div class="card" data-category="lol">
-    <div class="card-image">
-      <div class="card-placeholder">
-        <div class="placeholder-icon">+</div>
-        <div class="placeholder-text">곧 업로드</div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="card-sport">LOL</span>
-        <span class="card-date">—</span>
-      </div>
-      <div class="card-title" style="color: var(--gray);">새 인포그래픽이 곧 업로드됩니다</div>
-      <div class="card-source">자동 업데이트</div>
-    </div>
-  </div>
-
 </div>
 
-<footer>
-  <p>© 2026 <span>SPORT LENS</span> · 해외 한국 선수 뉴스 인포그래픽</p>
-</footer>
+<footer><p>© 2026 <span>SPORT LENS</span> · 해외 한국 선수 뉴스 인포그래픽</p></footer>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-image" id="modalImage"></div>
+    <div class="modal-body">
+      <div class="modal-header">
+        <span class="modal-player" id="modalPlayer"></span>
+        <button class="modal-close" onclick="closeModalDirect()">✕</button>
+      </div>
+      <div class="modal-sport" id="modalSport"></div>
+      <div class="modal-title" id="modalTitle"></div>
+      <div class="modal-footer">
+        <span class="modal-source" id="modalSource"></span>
+        <span class="modal-date" id="modalDate"></span>
+      </div>
+      <div class="modal-nav">
+        <button class="modal-nav-btn" onclick="modalNav(-1)">← 이전</button>
+        <button class="modal-nav-btn" onclick="modalNav(1)">다음 →</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
-function filterCards(category, btn) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
+const defaultSlides = [
+  { player: '손흥민', emoji: '⚽', title: 'LAFC 손흥민, 시즌 5호골 폭발 — 인터 마이애미전 결승골', source: 'BBC Sport', date: '2026.03.22' },
+  { player: '이강인', emoji: '⚽', title: '이강인, PSG 챔피언스리그 선발 — 팬들 반응 폭발적', source: 'ESPN', date: '2026.03.21' },
+  { player: '김하성', emoji: '⚾', title: '김하성, 샌디에이고 시범경기 3안타 — 개막 기대감 UP', source: 'MLB.com', date: '2026.03.20' },
+  { player: 'Faker', emoji: '🎮', title: '페이커, 2026 MSI 한국 대표 확정 — 역대 최다 우승 도전', source: 'Inven Global', date: '2026.03.22' },
+];
 
-  document.querySelectorAll('.card').forEach(card => {
-    if (category === 'all' || card.dataset.category === category) {
-      card.style.display = 'block';
-    } else {
-      card.style.display = 'none';
-    }
+let slides = defaultSlides;
+try { const s = localStorage.getItem('sportlens_slides'); if(s) slides = JSON.parse(s); } catch(e) {}
+
+let cur = 0, timer;
+
+function renderSlider() {
+  const sl = document.getElementById('heroSlider');
+  const dots = document.getElementById('sliderDots');
+  sl.querySelectorAll('.slide').forEach(s => s.remove());
+  slides.forEach((s, i) => {
+    const el = document.createElement('div');
+    el.className = 'slide' + (i===0?' active':'');
+    const imgContent = s.image
+      ? `<img src="${s.image}" alt="${s.player}" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="slide-emoji-fallback" style="display:none">${s.emoji}</span>`
+      : `<span class="slide-emoji-fallback">${s.emoji}</span>`;
+    el.innerHTML = `<div class="slide-image" style="cursor:pointer" onclick="openSlideModal(${i})">${imgContent}</div><div class="slide-body" style="cursor:pointer" onclick="openSlideModal(${i})"><div><span class="slide-player">${s.player}</span><div class="slide-title">${s.title}</div></div><div class="slide-meta"><span class="slide-source">${s.source}</span><span class="slide-date">${s.date}</span></div></div>`;
+    sl.insertBefore(el, sl.querySelector('.slider-arrows'));
+  });
+  dots.innerHTML = '';
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'slider-dot'+(i===0?' active':'');
+    d.onclick = () => goTo(i);
+    dots.appendChild(d);
   });
 }
-</script>
 
+function goTo(n) {
+  document.querySelectorAll('.slide')[cur].classList.remove('active');
+  document.querySelectorAll('.slider-dot')[cur].classList.remove('active');
+  cur = (n + slides.length) % slides.length;
+  document.querySelectorAll('.slide')[cur].classList.add('active');
+  document.querySelectorAll('.slider-dot')[cur].classList.add('active');
+  clearInterval(timer); timer = setInterval(()=>changeSlide(1), 4000);
+}
+
+function changeSlide(d) { goTo(cur+d); }
+
+renderSlider();
+timer = setInterval(()=>changeSlide(1), 4000);
+
+function filterCards(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.card').forEach(c=>{c.style.display=(cat==='all'||c.dataset.category===cat)?'block':'none';});
+}
+
+// 모달 관련
+let modalItems = []; // 슬라이드 or 카드 데이터 통합
+let modalIdx = 0;
+
+function openSlideModal(i) {
+  clearInterval(timer);
+  modalItems = slides;
+  modalIdx = i;
+  showModal(slides[i]);
+}
+
+function openCardModal(el) {
+  const visibleCards = Array.from(document.querySelectorAll('.card')).filter(c => c.style.display !== 'none');
+  modalIdx = visibleCards.indexOf(el);
+  modalItems = visibleCards.map(c => ({
+    player: c.querySelector('.card-tag')?.textContent || '',
+    title: c.querySelector('.card-title')?.textContent || '',
+    sport: c.querySelector('.card-sport')?.textContent || '',
+    date: c.querySelector('.card-date')?.textContent || '',
+    source: c.querySelector('.card-source')?.textContent || '',
+    image: c.querySelector('.card-image img')?.src || '',
+    emoji: c.querySelector('.placeholder-icon')?.textContent || '⚽',
+  }));
+  showModal(modalItems[modalIdx]);
+}
+
+function showModal(data) {
+  const imgEl = document.getElementById('modalImage');
+  if(data.image) {
+    imgEl.innerHTML = `<img src="${data.image}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center" onerror="this.parentElement.innerHTML='<span style=font-size:80px>${data.emoji||'⚽'}</span>'">`;
+  } else {
+    imgEl.innerHTML = `<span style="font-size:80px">${data.emoji||'⚽'}</span>`;
+  }
+  document.getElementById('modalPlayer').textContent = data.player || '';
+  document.getElementById('modalSport').textContent = data.sport || '';
+  document.getElementById('modalTitle').textContent = data.title || '';
+  document.getElementById('modalSource').textContent = data.source || '';
+  document.getElementById('modalDate').textContent = data.date || '';
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(e) {
+  if(e.target === document.getElementById('modalOverlay')) closeModalDirect();
+}
+
+function closeModalDirect() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+  timer = setInterval(()=>changeSlide(1), 4000);
+}
+
+function modalNav(dir) {
+  if(modalItems.length === 0) return;
+  modalIdx = (modalIdx + dir + modalItems.length) % modalItems.length;
+  showModal(modalItems[modalIdx]);
+}
+
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModalDirect(); });
+</script>
 </body>
 </html>
